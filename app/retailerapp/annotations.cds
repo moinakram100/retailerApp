@@ -1,0 +1,1 @@
+using retailerServices as service from '../../srv/retailerService';

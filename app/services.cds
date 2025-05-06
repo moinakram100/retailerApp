@@ -1,0 +1,2 @@
+
+using from './retailerapp/annotations';

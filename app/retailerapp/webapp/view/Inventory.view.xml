@@ -1,0 +1,65 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.Inventory"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:tnt="sap.tnt" 
+    displayBlock="true" 
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id="inventoryPage" showHeader="false">
+        <content>
+    <tnt:ToolHeader
+        id="inventoryPageToolbar"
+        class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiTinyMarginBegin"
+    >
+       <HBox
+                justifyContent="Center"
+                width="100%"
+                id="inventoryPageHeaderHBox"
+            >
+                <Title
+                    text="Inventory"
+                    wrapping="true"
+                    id="inventoryPageHeaderTitle"
+                    textAlign="Center"
+                    class="headerTitle"
+                />
+            </HBox>
+    </tnt:ToolHeader>
+         
+                  <FlexBox
+                     width="99%"
+                    id="tank_layout"
+                    class="tankFlexContainer formArea"
+                    direction="Row"
+                    wrap="Wrap"
+                    items="{
+                        path: 'tankDetailsData>/'
+                    }">
+                    <items>
+                        <VBox class="tank_box">
+                            <VBox class="container">
+                                <VBox height="{tankDetailsData>tankHeight}" id="tankFill" class="inner_level">
+                                </VBox>
+                                <Button text="" class="show_button" press="onShowInfoPress" tooltip="Clicked on Tank to know more details"/>
+                                <Link class="tank_no Tank_text" text="{tankDetailsData>tankHeight}" press="onShowInfoPress"/>
+                                <!-- <Link class="tank_no Tank_text sText" text="{tankDetailsData>product}" press="onShowInfoPress"/> -->
+                            </VBox>
+                          <VBox id="text_data2" class="text_tank sapUiTinyMarginTop">
+                        <HBox id="qty_text" class="qty_text">
+                          <Text id="Text3" class="card_text"   text="Location"/>  
+                          <Text id="Text4" class="card_text"  text="{tankDetailsData>location}"/>  
+                        </HBox>
+                        <HBox id="product_txt" class="product_text">
+                          <Text id="Text1" class="card_text"  text="Product"/>  
+                          <Text id="Text2" class="card_text"  text="{tankDetailsData>product}"/>  
+                        </HBox>
+                      </VBox>
+                        </VBox>
+                        
+                    </items>
+                </FlexBox>
+
+                  
+           
+        </content>
+    </Page>
+</mvc:View>

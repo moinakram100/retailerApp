@@ -1,0 +1,137 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.Inventory"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:layout="sap.ui.layout.form" 
+    displayBlock="true" 
+    xmlns:tnt="sap.tnt"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id="salesOrderPage" showHeader="false">
+    <tnt:ToolHeader
+            id="order_ToolHeader"
+            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        >
+         <HBox justifyContent="Center" width="100%" id="orderPageHeaderHBox">
+            <Title
+                text="Purchase Request"
+                wrapping="true"
+                id="salesOrder_Title"
+                level="H3"
+                class="headerTitle"
+            />
+            </HBox>
+        </tnt:ToolHeader>
+        <content>
+       <VBox class="" width="99%">
+                        <form:SimpleForm
+                            id="create_orgDetailsForm"
+                            class="sapUiTinyMargin formArea"
+                            editable="true" >
+              
+                            <form:content>
+                                <core:Title id="create_IDGenTitle1" />
+                                <VBox id="orgDetailsContainer" class="dynamicField"/>
+                                <Label
+                                    id="create_vendorLabel"
+                                    text="PR Number" 
+                                    labelFor="create_VendorId"
+                                    
+                                />
+                                <HBox id="createPurcHBox2">
+                                    <Input
+                                        id="create_VendorId"
+                                        width="300px"
+                                        value="{purchase>/Vendor}"
+                                        editable="false"
+                                    />
+                                </HBox>
+                              
+                                <Label
+                                    id="create_purchaseOrgLabel"
+                                    text="Delivery Location"
+                                />
+                                <HBox id="createPurcHBox4">
+                                    <Input
+                                        id="purchaseOrg_id"
+                                        width="300px"
+                                        value="{vendorDataModel>/PurchasingOrganization}"
+                                    />
+                                </HBox>
+
+                                  <Label
+                                    id="create_startDateLabel"
+                                    text="Quantity"
+                                />
+                                <Input
+                                        id="qtyId"
+                                        width="300px"
+                                        value="{purchase>/PurGroup}"
+                                    />
+                              
+                                <Label
+                                    id="create_endDateLabel"
+                                    text="Unit of Measure"                                    
+                                />
+                               <Select id="uom" selectedKey="{pr>/uom}" width="300px" forceSelection="false">
+                                <core:Item key="kg" text="kg" />
+                                <core:Item key="Nm3" text="Nm³" />
+                              </Select>
+
+                                <Label
+                                    id="create_companyCodeLabel"
+                                    text="Request Date"
+                                    
+                                />
+                                <HBox id="createPurcHBox3">
+                            <DatePicker id="requestDate" value="{pr>/requestDate}" width="300px"/>
+                                </HBox>
+                              
+
+                                <core:Title id="create_IDGenTitle2" />
+
+                                <VBox id="orgDetailsContainer2" class="dynamicFieldRight"/>
+                                  <Label text="Gas Type"/>
+                                <Select id="gasType" selectedKey="{pr>/gasType}" width="300px" forceSelection="false">
+                                  <core:Item key="CNG" text="CNG" />
+                                  <core:Item key="LPG" text="LPG" />
+                                </Select>
+
+                                <Label
+                                    id="create_purchaseGroupLabel"
+                                    text="Requested By"
+                                />
+                                <HBox id="createPurcHBox5">
+                                    <Input
+                                        id="purchase_id"
+                                        width="300px"
+                                        value="{purchase>/PurGroup}"
+                                    />
+                                </HBox>
+
+                                 <Label text="Priority" />
+                                <Select id="priority" selectedKey="{pr>/priority}" width="300px" forceSelection="false">
+                                  <core:Item key="Normal" text="Regular" />
+                                  <core:Item key="Urgent" text="Urgent" />
+                                  <core:Item key="Emergency" text="Emergency" />
+                                </Select>
+
+                               <Label text="Required By Date" />
+                               <DatePicker id="requiredBy" value="{pr>/requiredBy}" width="300px"/>
+
+                                  <Label text="Remarks" />
+                               <TextArea id="remarks" value="{pr>/remarks}" width="300px" />
+
+           
+
+                            </form:content>
+                               
+                        </form:SimpleForm>
+                        <HBox justifyContent="End">
+                     <Button text="Submit" type="Emphasized" press="onSubmitPR"/>
+                        </HBox>
+  </VBox>
+
+        </content>
+    </Page>
+</mvc:View>

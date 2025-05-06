@@ -1,0 +1,260 @@
+<mvc:View
+    controllerName="com.ingenx.retailerapp.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:card="sap.f.cards"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+>
+  <Page id="page1" title="{i18n>title}" showHeader="false">
+  <tnt:ToolHeader
+            id="eZTableMap_ToolHeader"
+            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        >
+         <HBox
+                justifyContent="Center"
+                width="100%"
+                id="dashboardPageHeaderHBox"
+            >
+            <Title
+                text="Retailer Overview"
+                wrapping="true"
+                id="eZTableMap_Title"
+                level="H3"
+                class="headerTitle"
+            />
+            </HBox>
+        </tnt:ToolHeader>
+
+  <HBox width="100%" id="mainDashboardContainer">
+    <!-- Left Side: 60% -->
+    <VBox width="60%" class="leftSide" id="dashboardLeftPanel">
+        <!-- Your Inventory Block Here -->
+        <l:BlockLayout id="dashLayout" background="Dashboard" visible="true">
+            <l:BlockLayoutRow id="dashboardCardRow"> 
+                <l:BlockLayoutCell id="dashboardCardCell" width="60%">
+                     <Toolbar id="dashtb">
+                        <Title id="dashCellTitle" level="H6" text="Inventory"/>
+                    </Toolbar>
+                    <Text id="inventoryLabel" text="Location : Andheri East" class="sapUiTinyMargin"/>
+                        <HBox id="dashHbox1" class="dashBoard">
+                            <Text id="inventoryText" text="CNG" class="sapUiTinyMargin graphText"/>
+                            <ProgressIndicator
+                                id="dashboard_progressIn"
+                                class="sapUiTinyMargin progressBar"
+                                percentValue="100"
+                                showValue="true"
+                                width="100%"
+                                state="Information">
+                                <layoutData>
+                                <FlexItemData id="dashboard_progressInFlex" growFactor="1" />
+                                </layoutData>
+                            </ProgressIndicator>
+                            <Text id="dashboard_progressInText" text="70%" class="sapUiTinyMargin graphText"/>
+                        </HBox>
+
+                    <Text text="Location : Sakinaka" class="sapUiTinyMargin"/>
+                        <HBox id="dashHbox3" class="hbxo">
+                            <Text text="CNG" class="sapUiTinyMargin graphText"/>
+                            <ProgressIndicator
+                            id="dashboard_progressIn2"
+                                class="sapUiTinyMargin progressBar"
+                                percentValue="100"
+                                showValue="true"
+                                width="100%"
+                                state="Information">
+                                <layoutData>
+                                <FlexItemData growFactor="1" />
+                                </layoutData>
+                            </ProgressIndicator>
+                            <Text text="55%" class="sapUiTinyMargin graphText"/>
+                        </HBox>
+                      
+                        <HBox
+                            justifyContent="End"
+                            width="100%">
+                            <Link class="viewAllLink sapUiTinyMargin" text="View All" press="onPressViewAllLink"/>
+                        </HBox>
+
+                </l:BlockLayoutCell>
+                <l:BlockLayoutCell width="50%">
+                    <Toolbar id="dashtb2">
+                        <Title id="dashCellTitle2" level="H6" text="Sales History (7 Days)"/>
+                    </Toolbar>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMarginTop">
+                        <Text text="20/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$568,814.00" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                        <Text text="19/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$768,900.84" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                        <Text text="18/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$548,999.94" textAlign="End" width="100px" class="sapUiTinyMarginEnd markText"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                        <Text text="17/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$968,467.12" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                        <Text text="16/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$875,005.18" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
+                        <Text text="15/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$468,857.20" textAlign="End" width="100px" class="sapUiTinyMarginEnd markText"/>
+                    </HBox>
+                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop"> 
+                        <Text text="14/03/2019" class="sapUiTinyMarginBegin" />
+                        <Text text="$655,699.20" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
+                    </HBox>
+                        <HBox
+                            justifyContent="End"
+                            width="100%">
+                            <Link class="viewAllLink sapUiTinyMargin" text="Details" press="onPressSalesHistoryLink"/>
+                        </HBox>
+
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+        </l:BlockLayout>
+    </VBox>
+
+    <!-- Right Side: 40% -->
+    
+      <VBox width="40%" class="rightSide sapUiTinyMarginTop">  
+         <HBox>     
+            <VBox id="createOrderCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="Create Order"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://customer-order-entry" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+
+            <VBox id="myOrdersCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="My Orders"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://list" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+
+            <VBox id="paymentCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="Payments"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://monitor-payments" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+            </HBox>     
+         <HBox class="sapUiMediumMarginTop">     
+            <VBox id="salesOverviewCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="Sales Overview"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://tree" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+
+            <VBox id="inventoryCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="Inventory"
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://journey-change" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+            <VBox id="optionsCard" class="customCard sapUiSmallMargin" width="28%" height="105%" >
+                <Text text="More Options.."
+                    class="sapUiSmallMarginTop sapUiSmallMarginBegin sapMTitle"
+                />
+            <core:Icon src="sap-icon://open-command-field" size="2rem" color="#0a6ed1"
+                class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+            />
+            </VBox>
+            </HBox>     
+      </VBox>
+</HBox>
+
+<HBox>
+<VBox class="sapUiSmallMargin chartArea" width="70%">
+        <viz:VizFrame
+      id="idVizFrame"
+      height="300px"
+      width="100%"
+      vizType="line"
+      uiConfig="{applicationSet:'fiori'}"
+      vizProperties="{/vizProperties}"
+      >
+      
+      <viz:dataset>
+        <viz.data:FlattenedDataset data="{/chartData}">
+          <viz.data:dimensions>
+            <viz.data:DimensionDefinition
+              name="Quarter"
+              value="{Quarter}" />
+          </viz.data:dimensions>
+          <viz.data:measures>
+            <viz.data:MeasureDefinition
+              name="Open Orders"
+              value="{OpenOrders}" />
+            <viz.data:MeasureDefinition
+              name="Fulfilled Orders"
+              group="1"
+              value="{FulfilledOrders}" />
+          </viz.data:measures>
+        </viz.data:FlattenedDataset>
+      </viz:dataset>
+
+      <viz:feeds>
+        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Open Orders,Fulfilled Orders" />
+        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Quarter" />
+      </viz:feeds>
+
+    </viz:VizFrame>
+    </VBox>
+
+    <VBox  width="28%">  
+    <viz:VizFrame
+  id="donutChart"
+  class="sapUiSmallMarginTop chartArea"
+  width="98%"
+  height="300px"
+  vizType="donut"
+  uiConfig="{applicationSet:'fiori'}"
+  vizProperties="{donutModel>/vizProperties}">
+
+  <viz:dataset>
+    <viz.data:FlattenedDataset data="{donutModel>/donutData}">
+      <viz.data:dimensions>
+        <viz.data:DimensionDefinition name="Category" value="{donutModel>Category}" />
+      </viz.data:dimensions>
+      <viz.data:measures>
+        <viz.data:MeasureDefinition name="Quantity" value="{donutModel>Quantity}" />
+      </viz.data:measures>
+    </viz.data:FlattenedDataset>
+  </viz:dataset>
+
+  <viz:feeds>
+    <viz.feeds:FeedItem uid="size" type="Measure" values="Quantity"/>
+    <viz.feeds:FeedItem uid="color" type="Dimension" values="Category"/>
+  </viz:feeds>
+</viz:VizFrame>
+
+    </VBox>
+</HBox>
+
+</Page>
+
+</mvc:View>

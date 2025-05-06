@@ -1,0 +1,64 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.MenuOptions"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt" 
+    displayBlock="true"
+    xmlns="sap.m">
+       <tnt:ToolHeader
+        id="menuOptionsPageToolbar"
+        class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiTinyMarginBegin"
+    >
+       <HBox
+                justifyContent="Center"
+                width="100%"
+                id="menuOptionsPageHeaderHBox"
+            >
+                <Title
+                    text="Menu Options"
+                    wrapping="true"
+                    id="menuOptionsPageHeaderTitle"
+                    textAlign="Center"
+                    class="headerTitle"
+                />
+            </HBox>
+    </tnt:ToolHeader>
+    <Page id="page" showHeader="false">
+        <content>
+            <GenericTile id="_IDGenGenericTile1" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Purchase Request" press="onPressSalesOrderTile" >
+                <TileContent id="_IDGenTileContent1" >
+                    <ImageContent id="_IDGenImageContent1" src="sap-icon://customer-order-entry" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile2" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="My Orders" press="onPressMyOrderTile" >
+                <TileContent id="_IDGenTileContent2" >
+                    <ImageContent id="_IDGenImageContent2" src="sap-icon://list" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile3" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Payments" press="onPressPaymentTile">
+             <TileContent id="_IDGenTileContent3" >
+                    <ImageContent id="_IDGenImageContent3" src="sap-icon://monitor-payments" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile4" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Inventory" press="onPressInventoryTile" >
+            <TileContent id="_IDGenTileContent4" >
+                    <ImageContent id="_IDGenImageContent4" src="sap-icon://journey-change" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile5" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Sales Entry" press="onSalesEntryTile" >
+            <TileContent id="_IDGenTileContent5" >
+                    <ImageContent id="_IDGenImageContent5" src="sap-icon://my-sales-order" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile6" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Sales Overview" press="onPressSalesOverviewTile" >
+            <TileContent id="_IDGenTileContent6" >
+                    <ImageContent id="_IDGenImageContent6" src="sap-icon://tree" />
+                </TileContent>
+            </GenericTile>
+            <GenericTile id="_IDGenGenericTile7" class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout" header="Unload" press="onPressUnloadTile" >
+            <TileContent id="_IDGenTileContent7" >
+                    <ImageContent id="_IDGenImageContent7" src="sap-icon://clear-all" />
+                </TileContent>
+            </GenericTile>
+           
+        </content>
+    </Page>
+</mvc:View>

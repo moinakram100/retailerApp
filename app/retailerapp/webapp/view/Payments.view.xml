@@ -1,0 +1,95 @@
+<mvc:View 
+   controllerName="com.ingenx.retailerapp.controller.Payments"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true" 
+    xmlns:l="sap.ui.layout"
+    xmlns:tnt="sap.tnt"
+    xmlns="sap.m">
+   
+    <Page id="paymentPage" showHeader="false">
+     <tnt:ToolHeader
+            id="paymentPage_ToolHeader"
+            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        >
+         <HBox
+                justifyContent="Center"
+                width="100%"
+                id="paymentPageHeaderHBox"
+            >
+            <Title
+                text="Payments"
+                wrapping="true"
+                id="paymentPage_Title"
+                level="H3"
+                class="headerTitle"
+            />
+            </HBox>
+        </tnt:ToolHeader>
+        <content>
+
+        <HBox class="sapUiSmallMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd navArea" justifyContent="SpaceBetween" >
+        <SearchField width="400px" placeholder="Search by PO No..." liveChange="onPaymentSearch"/>
+          <HBox>
+          <Button icon="sap-icon://filter" text="Filter" press="onOpenFilterPopover" class="sapUiTinyMarginEnd"/>
+          <Button icon="sap-icon://refresh" text="Refresh" press="_onClearFilters"/>
+          </HBox>
+      </HBox>
+
+      <Table id="paymentTable" width="99%" inset="false" items="{/payments}" class="formArea sapUiTinyMarginBegin">
+        <columns>
+          <Column><Text text="Payment ID"/></Column>
+          <Column><Text text="PO Number"/></Column>
+          <Column><Text text="Amount (₹)"/></Column>
+          <Column><Text text="Payment Date"/></Column>
+          <Column><Text text="Mode"/></Column>
+          <Column><Text text="Transaction ID"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{paymentId}"/>
+              <Text text="{poNumber}"/>
+              <Text text="{amount}"/>
+              <Text text="{paymentDate}"/>
+              <Text text="{mode}"/>
+              <Text text="{transactionId}"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+
+           
+        </content>
+    </Page>
+
+    <Popover
+  id="paymentFilterPopover"
+  title="Filter Orders"
+  placement="Bottom"
+  class="sapUiContentPadding"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+
+  <content>
+    <VBox>
+      <Label text="Mode" />
+      <Select id="statusSelect1" change="_onModeFilter" width="100%">
+        <core:Item key="All" text="All" />
+        <core:Item key="Cash" text="Cash" />
+        <core:Item key="UPI" text="UPI" />
+        <core:Item key="Bank Transfer" text="Bank Transfer" />
+      </Select>
+
+      <Label text="Date From" />
+      <DatePicker id="paymentDateFrom" change=".onDateFilter" />
+
+      <Label text="Date To" />
+      <DatePicker id="paymentDateTo" change=".onDateFilter" />
+
+      <Button text="Clear Filters" press="._onClearFilters" />
+    </VBox>
+  </content>
+</Popover>
+</mvc:View>
+
+

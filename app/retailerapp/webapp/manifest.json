@@ -1,0 +1,205 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.ingenx.retailerapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.3",
+      "toolsId": "bae8c735-74eb-4747-a8cb-337d3a4a29c4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/retailer-services/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.135.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.ingenx.retailerapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.ingenx.retailerapp.view",
+        "async": true,
+        "viewPath": "com.ingenx.retailerapp.view"
+      },
+      "routes": [
+        {
+          "name": "RouteretailerHome",
+          "pattern": ":?query:",
+          "target": [
+            "TargetretailerHome"
+          ]
+        },
+        {
+          "name": "RouteMoreOptions",
+          "pattern": "more",
+          "target": [
+            "TargetMoreOptions"
+          ]
+        },
+        {
+          "name": "RouteInventory",
+          "pattern": "inventory",
+          "target": [
+            "TargetInventory"
+          ]
+        },
+        {
+          "name": "RoutePayments",
+          "pattern": "payment",
+          "target": [
+            "TargetPayment"
+          ]
+        },
+        {
+          "name": "RouteSalesOverview",
+          "pattern": "salesHistory",
+          "target": [
+            "TargetSalesOverview"
+          ]
+        },
+        {
+          "name": "RouteSalesOrder",
+          "pattern": "salesOrder",
+          "target": [
+            "TargetSalesOrder"
+          ]
+        },
+        {
+          "name": "RouteMyOrders",
+          "pattern": "MyOrders",
+          "target": [
+            "TargetMyOrders"
+          ]
+        },
+        {
+          "name": "RouteUnloadPage",
+          "pattern": "unload",
+          "target": [
+            "TargetUnloadPage"
+          ]
+        },
+        {
+          "name": "RouteSalesEntryPage",
+          "pattern": "sales",
+          "target": [
+            "TargetSalesEntryPage"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetretailerHome": {
+          "id": "retailerHome",
+          "name": "Dashboard"
+        },
+        "TargetMoreOptions": {
+          "id": "moreOptions",
+          "name": "MenuOptions"
+        },
+        "TargetInventory": {
+          "id": "inventoryPage",
+          "name": "Inventory"
+        },
+        "TargetPayment": {
+          "id": "paymentPage",
+          "name": "Payments"
+        },
+        "TargetSalesOverview": {
+          "id": "salesOverviewPage",
+          "name": "SalesOverview"
+        },
+        "TargetSalesOrder": {
+          "id": "salesOrderPage",
+          "name": "SalesOrder"
+        },
+        "TargetMyOrders": {
+          "id": "myOrderPage",
+          "name": "MyOrders"
+        },
+        "TargetUnloadPage": {
+          "id": "unloadPage",
+          "name": "Unload"
+        },
+        "TargetSalesEntryPage": {
+          "id": "salesEntry",
+          "name": "SalesEntry"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.ingenx.retailerapp.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

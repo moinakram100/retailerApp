@@ -1,0 +1,298 @@
+/* Enter your custom styles here */
+.headerText{
+    font-weight: bold;
+    color : black
+}
+
+.sapUiBlockLayoutSizeL:not(.sapUiBlockLayoutKeepFontSize) .sapUiBlockCellContent {
+    padding: 0.5rem 0.5rem !important;
+}
+
+.sapMPIBarInformation::before {
+   display: none !important;
+}
+
+.dashBoardHbox {
+    align-items: center;
+    height: 30px !important;
+  }
+
+  .graphText{
+    margin-top: 21px !important;
+  }
+
+.sapMPI .sapMPIBar {
+    border-radius: 0rem !important;
+}
+
+.sapUiSizeCompact .sapMPI:not(.sapMPIDisplayOnly) {
+    height: 2.855rem !important;
+}
+.viewAllLink{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.markText{
+    color : red;
+}
+.dashboardLayout{
+    width: 60%;
+}
+.customCard{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.linksArea ,.chartArea,.ContactsArea{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.linksArea,.ContactsArea{
+    background-color: #fff;
+}
+.standardList{
+  font-size: 30px;
+}
+.contactList {
+    height: 165px;
+    overflow-y: auto;
+  }
+  .cardClickedEffect {
+    background-color: #d1e0f7; 
+    box-shadow: 0 0 10px #0a6ed1; 
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .formArea {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: #fff;
+    border-radius: 2px;
+ }
+
+ .totalSaleText{
+  font-weight: bold;
+  font-size: 15px;
+ }
+    /* my payments page */
+
+    .paymentStandardListClass .sapMSLIInfo {
+      font-size: 13px;
+      font-weight: bold;
+    }
+  /* my order page */
+
+  .standardList .sapMSLIInfo {
+    font-size: 15px;
+    font-weight: bold;
+  }
+.statusPending{
+  color : orange !important;
+  font-weight: bold;
+}
+.statusCompleted{
+  color : green !important;
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+  /* inventory page css */
+  .tankFlexContainer{
+    display: flex;
+    justify-content: center;
+    margin: 1% 0px 0px 7px;
+    padding: 10px;
+  }
+  .tank_box{
+    margin: 10px;
+  }
+
+  .container {
+    position: relative;
+    width: 131px;
+    height: 145px;
+    padding-top: 50px;
+    margin: 0 auto;
+    /* background: #D3D7D9; */
+    /* background-color: #B5C0D0; */
+    background-color: #cccccc;
+    border-radius: 104%/40px;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .container:after {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: 0.5px;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    z-index: -1;
+    /* border: 2px solid #abbeca; */
+    border: 1px solid #888888;
+    /* border : 1px solid #CCD3CA; */
+    filter: brightness(0.5);
+    border-radius: 100%;
+    /* margin-left: 1px; */
+  }
+
+  .show_button .sapMBtnInner{
+    background-color: transparent !important;
+    border-color: transparent !important;
+    border-color: 2px solid rgba(128, 128, 128, 0.99);
+    position: absolute;
+    top: -6px;
+    left: -11px;
+    overflow: visible;
+    margin-top: -47px;
+    padding: 76px;
+    margin-left: -61px;
+    cursor: pointer;
+  }
+  .show_button:active{
+    border: transparent !important;
+  }
+  .inner_level {
+    content: '';
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    height: 0%;
+    z-index: -1;
+    background: rgba(56, 56, 56, 0.8);
+    border-radius: 100%/0px;
+    transition: height 2s ease-in-out;
+    animation: sway 4s ease-in-out infinite; 
+  }
+
+  .tank_no{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: white;
+    /* font-weight: bold; */
+  }
+
+  .Tank_text:hover{
+    text-decoration: none !important;
+  }
+
+  .Tank_text:focus{
+    background-color: transparent !important;
+    text-decoration: none !important;
+  }
+  
+  .Tank_text{
+    color : #fff !important;
+    margin-top: -96px;
+    font-size: 16px;
+  }
+
+  .text_tank{
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    box-shadow: rgba(200, 195, 195, 0.25) 0px 0.0625em 0.0625em, rgba(200, 195, 195, 0.25) 0px 0.125em 0.5em, rgba(200, 195, 195, 0.25) 0px 0px 0px 1px inset;
+    box-shadow: 2px 2px 2px solid green;
+    display: flex;
+    background-color: rgb(189, 206, 207);
+    justify-content: space-between;
+    align-items:center; 
+    /* margin-top: 5%; */
+    border-radius: 5px;
+    margin-left: 1%;
+  }
+  .qty_text{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .card_text{
+    font-size: 11px;
+    font-weight: bold;
+  }
+  .product_text{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* unload page css */
+
+.sapTntToolHeader .sapMTitle {
+  font-family: "72-Bold", "72-Boldfull", "72", "72full", Arial, Helvetica, sans-serif !important;
+  color: black !important;
+}
+
+/* .sapTntToolHeader.sapMTB {
+  border-radius: 0.5rem;
+}
+
+.sapTntToolHeader {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 6px 0px;
+  transition: 0.3s;
+}  */
+  
+/* .sapUiBlockCellContent {
+  padding: 0.5rem !important;
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+} */
+
+.headerTitle{
+  font-size: 1.5rem !important;
+  font-weight: bold;
+  align-items: center;
+}
+.unloadTable{
+  min-width: 629px;
+}
+
+.table {
+  width: 45rem;
+  border: 1px solid black;
+  margin-left: 100px;
+  border: 1.5px solid #cccccc;
+  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.submit{
+  margin-left: 72rem;
+}
+
+/* Css For Parking List Screen */
+
+.headerTextPL {
+  font-size: 2rem;
+  font-weight: bold;
+  padding-left: 32rem;
+}
+
+.uploadMainLayout {
+  background-color: white;
+  padding: 45px 0px 25px 10px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 10px;
+  gap: 1.5rem;
+  height: 500px;
+  padding: 20px 0px 0px 20px;
+}
+
+.headerNav,.tableLayout {
+  gap: 1rem;
+  border: 1.5px solid #cccccc;
+  box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 10px 0 10px 10px;
+  min-width: 220px;
+}
+
+
+

@@ -1,0 +1,51 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.SalesOverview"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true" 
+    xmlns:tnt="sap.tnt"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+     
+     <Page id="salesHistorypage" showHeader="false">
+      <tnt:ToolHeader
+            id="salesOverviewPage_ToolHeader"
+            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        >
+         <HBox
+                justifyContent="Center"
+                width="100%"
+                id="salesOverviewPageHeaderHBox"
+            >
+            <Title
+                text="Sales Overview"
+                wrapping="true"
+                id="salesOverviewPage_Title"
+                level="H3"
+                class="headerTitle"
+            />
+            </HBox>
+        </tnt:ToolHeader>
+      <content>
+       <Text text="Monthly Total Sales: ₹{overview>/totalSales}" class="sapUiSmallMargin sapUiTinyMarginBottom totalSaleText" />
+          <Table id="salesOverviewTable" width="99%" inset="false" items="{overview>/sales}" class="formArea sapUiTinyMarginBegin">
+        <columns>
+          <Column><Text text="Customer Name"/></Column>
+          <Column><Text text="Gas Type"/></Column>
+          <Column><Text text="Amount (₹)"/></Column>
+          <Column><Text text="Quantity (KG)"/></Column>
+          <Column><Text text="salesDate"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{overview>customerName}"/>
+              <Text text="{overview>gasType}"/>
+              <Text text="{overview>amount}"/>
+              <Text text="{overview>quantity}"/>
+              <Text text="{overview>saleDate}"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+      </content>
+    </Page>
+</mvc:View>

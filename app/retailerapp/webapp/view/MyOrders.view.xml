@@ -1,0 +1,132 @@
+<mvc:View
+  controllerName="com.ingenx.retailerapp.controller.MyOrders"
+  xmlns="sap.m"
+  xmlns:tnt="sap.tnt"
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <Page showHeader="false">
+   <tnt:ToolHeader
+            id="myOrder_ToolHeader"
+            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        >
+         <HBox
+                justifyContent="Center"
+                width="100%"
+                id="myOrderPageHeaderHBox"
+            >
+            <Title
+                text="My Orders"
+                wrapping="true"
+                id="myOrder_Title"
+                level="H3"
+                class="headerTitle"
+            />
+             
+            </HBox>
+        </tnt:ToolHeader>
+
+    <content>
+     
+
+      <!-- === Filters / Search === -->
+      <HBox class="sapUiSmallMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd navArea" justifyContent="SpaceBetween" >
+        <SearchField width="400px" placeholder="Search by Order No..." liveChange="onSearchOrder"/>
+          <HBox>
+        <Button
+          icon="sap-icon://filter"
+          text="Filters"
+          press="onOpenFilterPopover"/>
+          <Button
+          icon="sap-icon://add"
+          class="sapUiSmallMarginBegin"
+          text="New Order"
+          type="Emphasized"
+          press="onCreateOrder"/>
+          </HBox>
+      </HBox>
+
+      <!-- === Orders Table === -->
+      <Table
+        id="ordersTable"
+        inset="false"
+        width="99%"
+        class="formArea sapUiTinyMarginBegin"
+        growing="true"
+        growingThreshold="20"
+        items="{/orders}"
+        mode="SingleSelectMaster"
+        selectionChange="onOrderSelect">
+
+        <!-- Columns -->
+        <columns>
+          <Column><Text text="Order No" /></Column>
+          <Column demandPopin="true"><Text text="Date" /></Column>
+          <Column demandPopin="true"><Text text="Status" /></Column>
+          <Column demandPopin="true"><Text text="Quantity (KG)" /></Column>
+          <Column minScreenWidth="Tablet" demandPopin="false"><Text text="Customer" /></Column>
+          <Column><Text text="Actions" /></Column>
+        </columns>
+
+        <!-- Items Binding -->
+        <items>
+          <ColumnListItem type="Active">
+            <cells>
+              <Text text="{orderNo}" />
+              <Text text="{orderDate}" />
+              <ObjectStatus
+                text="{status}"
+                state="{= ${status} === 'Delivered' ? 'Success' : 'Warning'}" />
+              <Text text="{quantity}" />
+              <Text text="{customerName}" />
+              <HBox width="100%">
+                <Button
+                  icon="sap-icon://show"
+                  type="Transparent"
+                  tooltip="View Details"
+                  press="onViewDetail"/>
+                
+                <Button
+                  icon="sap-icon://decline"
+                  type="Transparent"
+                  tooltip="Cancel"
+                  visible="{= ${status} === 'Pending'}"
+                  press="onCancel"/>
+                  
+              </HBox>
+            </cells>
+          </ColumnListItem>
+        </items>
+
+      </Table>
+    </content>
+  </Page>
+  <Popover
+  id="filterPopover"
+  title="Filter Orders"
+  placement="Bottom"
+  class="sapUiContentPadding"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core">
+
+  <content>
+    <VBox>
+      <Label text="Status" />
+      <Select id="statusSelect" change="_onStatusFilter" width="100%">
+        <core:Item key="All" text="All" />
+        <core:Item key="Pending" text="Pending" />
+        <core:Item key="Delivered" text="Delivered" />
+        <core:Item key="Cancelled" text="Cancelled" />
+      </Select>
+
+      <Label text="Date From" />
+      <DatePicker id="dateFrom" change=".onDateFilter" />
+
+      <Label text="Date To" />
+      <DatePicker id="dateTo" change=".onDateFilter" />
+
+      <Button text="Clear Filters" press="._onClearFilters" />
+    </VBox>
+  </content>
+</Popover>
+
+</mvc:View>

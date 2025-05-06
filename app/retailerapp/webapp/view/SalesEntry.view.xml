@@ -1,0 +1,116 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.SalesEntry"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:tnt="sap.tnt" 
+    displayBlock="true" 
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Page id="salesInnventoryPage" showHeader="false">
+        <content>
+    <tnt:ToolHeader
+        id="salesEntryPageToolbar"
+        class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiTinyMarginBegin"
+    >
+       <HBox
+                justifyContent="Center"
+                width="100%"
+                id="salesEntryPageHeaderHBox"
+            >
+                <Title
+                    text="Sales Entry"
+                    wrapping="true"
+                    id="salesEntryPageHeaderTitle"
+                    textAlign="Center"
+                    class="headerTitle"
+                />
+            </HBox>
+    </tnt:ToolHeader>
+             <VBox class="" width="99%">
+                        <form:SimpleForm
+                            id="salesEntryForm"
+                            class="sapUiTinyMargin formArea"
+                            editable="true" >
+              
+                            <form:content>
+                                <core:Title id="salesEntryTitle1" />
+                                <VBox id="salesEntryContainer" class="dynamicField"/>
+                                <Label
+                                    id="sales_customerNameLabel"
+                                    text="Customer Name" 
+                                    labelFor="create_VendorId"
+                                    
+                                />
+                                    <Input
+                                        id="sales_customerNameInput"
+                                        width="300px"
+                                        value="{purchase>/Vendor}"
+                                    />
+
+                                  <Label
+                                    id="sales_itemLabel"
+                                    text="Item"
+                                />
+                                <Input
+                                        id="sales_itemText"
+                                        width="300px"
+                                        value="{purchase>/PurGroup}"
+                                    />
+                              
+                                <Label
+                                    id="sales_qtyLabel"
+                                    text="Quantity"                                    
+                                />
+                                 <Input
+                                        id="sales_qtyText"
+                                        width="300px"
+                                        value="{purchase>/PurGroup}"
+                                />
+                                 <Label
+                                    id="sales_Date"
+                                    text="Date"
+                                />
+                                   <DatePicker id="saleDate" required="true" width="300px"/>
+                               
+
+                              
+                              
+
+                                <core:Title id="sales_IDGenTitle2" />
+
+                                <VBox id="salesEntryContainer2" class="dynamicFieldRight"/>
+                                  <Label
+                                    id="sales_totalAmount"
+                                    text="Total Amount"
+                                />
+                                <Input
+                                        id="sales_amountext"
+                                        width="300px"
+                                        value="{purchase>/PurGroup}"
+                                />
+                                  <Label text="Payment Method"/>
+                                <Select id="sales_paymentMethod"  width="300px" forceSelection="false">
+                                  <core:Item key="Cash" text="Cash"/>
+                                        <core:Item key="Card" text="Card"/>
+                                        <core:Item key="UPI" text="UPI"/>
+                                </Select>
+
+                              
+
+                                  <Label text="Remarks" />
+                               <TextArea id="sales_remarks" value="{pr>/remarks}" width="300px" />
+
+           
+
+                            </form:content>
+                               
+                        </form:SimpleForm>
+                        <HBox justifyContent="End">
+                     <Button text="Submit" type="Emphasized" press="onSubmitPR"/>
+                        </HBox>
+  </VBox>
+                  
+           
+        </content>
+    </Page>
+</mvc:View>

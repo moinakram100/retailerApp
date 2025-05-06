@@ -1,0 +1,162 @@
+<mvc:View controllerName="com.ingenx.retailerapp.controller.Unload"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m">
+<Page id="unloadMainPage" showHeader="false">
+
+    <tnt:ToolHeader
+        id="unloadPageToolbar"
+        class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiTinyMarginBegin"
+    >
+    <!-- <Text text="Goods Receipt at Warehouse"></Text> -->
+       <HBox
+                justifyContent="Center"
+                width="100%"
+                id="HBoxTitle"
+            >
+                <Title
+                    text="Unload"
+                    wrapping="true"
+                    id="FANMaterial_Header"
+                    textAlign="Center"
+                    class="headerTitle"
+                />
+            </HBox>
+    </tnt:ToolHeader>
+
+
+ <l:BlockLayout id="unloadPageLayout" background="Dashboard" visible="true">
+            <l:BlockLayoutRow id="unloadPageRow"> 
+                <l:BlockLayoutCell id="unloadPageCell">
+                 <FlexBox id="GenFlexBox1" direction="Column" class="uploadMainLayout">
+                   <FlexBox id="GenFlexBox7" class="headerNav" wrap="Wrap" alignItems="Center">
+                    <Label id="unloadPlantLabel" text="Plant:" design="Bold" />
+                    <Select id="unloadPlanttext" width="150px" change="onEnterPlant" />
+
+                    <Label id="unloadStoLabel" text="STO:" design="Bold" />
+                    <Select id="unloadStotext" width="150px" change="onEnterSTO" />
+
+                    <Label id="unloadDateLabel" text="Date:" design="Bold" />
+                    <DatePicker id="unloadDateText" width="200px" />
+
+                    <Button id="unload_resetBtn" text="Reset" icon="sap-icon://reset" press="onReset" />
+                </FlexBox>
+
+          <FlexBox id="_DGenFlexBox8" class="tableLayout" alignItems="Center">
+            <t:Table
+                class="unloadTable"
+                id="unloadParkingTable"
+                rows="{mergedData>/}"
+                selectionMode="MultiToggle"
+                width="auto"
+                rowSelectionChange="onSelectTable"
+                showNoData="false"
+
+                noData="Loading data ...">
+
+                <t:columns>
+                    <t:Column id="parkingColumn">
+                        <t:label>
+                            <Label text="Parking No." id="parkingNoLabel" />
+                        </t:label>
+                        <t:template>
+                            <Text id="parkingNotext" text="{mergedData>ParkingNo}" textAlign="Right" />
+                        </t:template>
+                    </t:Column>
+
+                    
+                    <t:Column id="dateColumn">
+                        <t:label>
+                            <Label id="dateLabel" text="Date" />
+                        </t:label>
+                        <t:template>
+                            <Text id="dateText" text="{mergedData>Date}" textAlign="Right" />
+                        </t:template>
+                    </t:Column> 
+
+                    <t:Column id="truckNoColumn">
+                        <t:label>
+                            <Label id="truckNoLabel" text="Truck No" />
+                        </t:label>
+                        <t:template>
+                            <Text id="truckNoText" text="{mergedData>VehicleNumber}" textAlign="Right" />
+                        </t:template>
+                    </t:Column>
+
+                     <t:Column id="materialColumn">
+                        <t:label>
+                            <Label text="Material" id="materialLabel"/>
+                        </t:label>
+                        <t:template>
+                            <Text id="materialText" text="{mergedData>Product}" textAlign="Right" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column id="stoColumn">
+                        <t:label>
+                            <Label id="stoLabel" text="STO" />
+                        </t:label>
+                        <t:template>
+                            <Text id="stoText" text="{mergedData>STONumber}" textAlign="Right" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column id="deliveryNoColumn">
+                        <t:label>
+                            <Label id="deliveryNoLabel" text="Delivery No" />
+                        </t:label>
+                        <t:template>
+                            <Text id="deliveryNoText" text="{= ${mergedData>Status} === '' ? 'Unknown' : ${mergedData>Status} }" textAlign="Begin" />
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column id="quantityColumn">
+                        <t:label>
+                            <Label text="Quantity" id="quantityLabel"/>
+                        </t:label>
+                        <t:template>
+                            <Text id="quantityText" text="{mergedData>Product}" textAlign="Right" />
+                        </t:template>
+                    </t:Column>
+
+              
+
+                    <!-- New Actions Column -->
+                    <t:Column width="225px" id="actionColumn">
+                        <t:label>
+                            <Label text="Actions" id="actionLabel" />
+                        </t:label>
+                        <t:template>
+                            <HBox justifyContent="Start" id="actionHBox" alignItems="Center">
+                                <Button
+                                    id="fullQtyBtn"
+                                    text="Full Quantity"
+                                    type="Default"
+                                    press="onFullQuantityPress"
+                                    tooltip="Confirm full quantity"
+                                     class="sapUiTinyMarginEnd" />
+                                <Button
+                                    id="partialQtyBtn"
+                                    text="Partial Quantity"
+                                    type="Emphasized"
+                                    press="confirmPartialQuantity"
+                                    tooltip="Confirm partial quantity" />
+                            </HBox>
+                        </t:template>
+                    </t:Column>
+
+                </t:columns>
+            </t:Table>
+        </FlexBox>
+    </FlexBox>
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+    </l:BlockLayout>
+   
+    </Page>
+</mvc:View>
+
