@@ -1,4 +1,3 @@
-/* Enter your custom styles here */
 .headerText{
     font-weight: bold;
     color : black
@@ -222,6 +221,23 @@
     display: flex;
     justify-content: space-between;
   }
+  .fbox{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: red; */
+  }
+  .ibox{
+    display: flex;
+    justify-content: right;
+    float: right;
+    align-items: start;
+    /* background-color: black; */
+  }
+  .details_close_btn{
+    float: right;
+    padding: 2px;
+    margin-right: 10px;
+  }
 
   /* unload page css */
 
@@ -293,6 +309,144 @@
   padding: 10px 0 10px 10px;
   min-width: 220px;
 }
+
+
+
+/* gahsjdkfl; */
+.tileContainer {
+  padding: 0.5rem;
+}
+
+.customTile {
+  margin: 0.2rem !important;
+  width: 11rem;
+  height: 8rem;
+}
+.titleHeader {
+ 
+  padding: 1rem;
+}
+
+.fuelText {
+  font-size: 2.7rem;
+  font-weight: bold;
+  
+}
+
+.marketingText {
+  font-size: 1.1rem;
+  font-weight: bold;
+ 
+}
+
+.title {
+  color: rgb(77, 86, 207) !important;
+  font-weight: bold;
+}
+.customPanel {
+  border-radius: 0px !important; /* Pointy / sharp edges */
+  padding: 0.5rem !important;    /* Tight padding inside panel */
+}
+
+
+.innerOrgDetailsPanel {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+
+}
+.outerBigBox {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+}
+
+.orgDetailsBox {
+  background-color: #ffffff;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  padding: 2px;
+}
+
+.innerOrgDetailsPanel {
+  background-color: #f9f9f9;
+  border-radius: 1px;
+}
+
+.leftColumnPadding {
+  padding-left: 150px; /* or 20px, depending on how much you want */
+}
+.leftColumnPaddingg {
+  padding-left: 100px; /* or 20px, depending on how much you want */
+}
+.documentTypeBox {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(144, 143, 143, 0.1);
+}
+
+
+.visitorPanel3DD{
+border-radius: 0px !important; /* Pointy / sharp edges */
+box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+
+
+
+
+}
+
+.side{
+padding-left:950px;
+padding-top: 10px;
+
+}
+.paddingleft{
+padding-left: 15px !important;
+}
+
+.marginleft{
+padding-left: 420px;
+}
+.marginfront{
+padding-left: 150px;
+}
+
+.marginright{
+padding-right: 100px ;
+}
+
+.paddingtop{
+padding-top: 10px;
+}
+
+.sectionPadX {
+padding-left: 15px !important;
+}
+
+.sectionPadTop {
+padding-top: 10px;
+}
+
+.contentCentered {
+padding-left: 50px;
+}
+
+.formSectionLeftPad {
+padding-left: 150px;
+}
+
+.formSectionRightPad {
+padding-right: 100px;
+}
+
+.sapTntToolHeader .sapMTitle {
+font-family: "72-Bold", "72-Boldfull", "72", "72full", Arial, Helvetica, sans-serif !important;
+color: black !important;
+}
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 <mvc:View 
-   controllerName="com.ingenx.retailerapp.controller.Payments"
+   controllerName="com.ingenx.qms.retailerapp.controller.Payments"
     xmlns:mvc="sap.ui.core.mvc" 
     displayBlock="true" 
     xmlns:l="sap.ui.layout"

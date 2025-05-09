@@ -10,7 +10,7 @@
 |**Service URL**<br>http://localhost:4004/odata/v4/retailer-services/|
 |**Module Name**<br>retailerapp|
 |**Application Title**<br>App Title|
-|**Namespace**<br>com.ingenx|
+|**Namespace**<br>com.ingenx.qms|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.135.0|
 |**Enable Code Assist Libraries**<br>False|

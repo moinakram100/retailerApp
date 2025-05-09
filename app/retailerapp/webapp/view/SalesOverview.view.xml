@@ -1,51 +1,164 @@
-<mvc:View controllerName="com.ingenx.retailerapp.controller.SalesOverview"
-    xmlns:mvc="sap.ui.core.mvc" 
-    displayBlock="true" 
-    xmlns:tnt="sap.tnt"
-    xmlns:l="sap.ui.layout"
-    xmlns="sap.m">
-     
-     <Page id="salesHistorypage" showHeader="false">
+
+<mvc:View
+  controllerName="com.ingenx.qms.retailerapp.controller.SalesOverview"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:m="sap.m"
+  xmlns:tnt="sap.tnt"
+  xmlns:viz="sap.viz.ui5.controls"
+  xmlns:viz.data="sap.viz.ui5.data"
+  xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+
+  <m:Page showHeader="false">
+    <m:content>
+
+      <!-- TOOL HEADER -->
       <tnt:ToolHeader
-            id="salesOverviewPage_ToolHeader"
-            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
-        >
-         <HBox
-                justifyContent="Center"
-                width="100%"
-                id="salesOverviewPageHeaderHBox"
-            >
-            <Title
-                text="Sales Overview"
-                wrapping="true"
-                id="salesOverviewPage_Title"
-                level="H3"
-                class="headerTitle"
-            />
-            </HBox>
-        </tnt:ToolHeader>
-      <content>
-       <Text text="Monthly Total Sales: ₹{overview>/totalSales}" class="sapUiSmallMargin sapUiTinyMarginBottom totalSaleText" />
-          <Table id="salesOverviewTable" width="99%" inset="false" items="{overview>/sales}" class="formArea sapUiTinyMarginBegin">
-        <columns>
-          <Column><Text text="Customer Name"/></Column>
-          <Column><Text text="Gas Type"/></Column>
-          <Column><Text text="Amount (₹)"/></Column>
-          <Column><Text text="Quantity (KG)"/></Column>
-          <Column><Text text="salesDate"/></Column>
-        </columns>
-        <items>
-          <ColumnListItem>
-            <cells>
-              <Text text="{overview>customerName}"/>
-              <Text text="{overview>gasType}"/>
-              <Text text="{overview>amount}"/>
-              <Text text="{overview>quantity}"/>
-              <Text text="{overview>saleDate}"/>
-            </cells>
-          </ColumnListItem>
-        </items>
-      </Table>
-      </content>
-    </Page>
+        id="paymentPage_ToolHeader"
+        class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+        width="99%">
+
+        <m:HBox justifyContent="Center" width="100%" id="paymentPageHeaderHBox">
+          <m:Title text="Sales Overview" wrapping="true" id="paymentPage_Title" level="H3" class="headerTitle"/>
+        </m:HBox>
+      </tnt:ToolHeader>
+
+      <m:VBox width="100%" class=" sectionPadX sectionPadTop">
+
+      
+       
+
+        <!-- Performance Metrics -->
+        <m:Panel headerText="Performance Metrics" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+          <m:VBox class="sapUiSmallMargin contentCentered">
+            <m:HBox width="100%" justifyContent="SpaceBetween">
+              <m:VBox width="30%">
+                <m:Label text="Total Sales" />
+                <m:ObjectNumber number="{localModel>/totalSales}" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Total Quantity Sold" />
+                <m:ObjectNumber number="{localModel>/totalQuantity}" numberUnit="Kg" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Total Orders" />
+                <m:ObjectNumber number="{localModel>/orderCount}" />
+              </m:VBox>
+            </m:HBox>
+            <m:HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMarginTop">
+              <m:VBox width="30%">
+                <m:Label text="Average Order Value" />
+                <m:ObjectNumber number="{localModel>/avgOrderValue}" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Pending Payments" />
+                <m:ObjectNumber number="{localModel>/pendingPayments}" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Gross Profit" />
+                <m:ObjectNumber number="{localModel>/grossProfit}" />
+              </m:VBox>
+            </m:HBox>
+          </m:VBox>
+        </m:Panel>
+
+        <!-- Quarterly Chart -->
+        <m:Panel headerText="Quarterly Sales and Amount Overview" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+          <m:VBox class="sapUiSmallMargin contentCentered">
+            <viz:VizFrame
+              id="quarterlySalesChart"
+              height="350px"
+              width="100%"
+              vizType="dual_column"
+              uiConfig="{applicationSet:'fiori'}"
+              vizProperties="{vizProps>/quarterlyChart}">
+              <viz:dataset>
+                <viz.data:FlattenedDataset data="{quarterlyModel>/items}">
+                  <viz.data:dimensions>
+                    <viz.data:DimensionDefinition name="Quarter" value="{Quarter}" />
+                  </viz.data:dimensions>
+                  <viz.data:measures>
+                    <viz.data:MeasureDefinition name="Cash" value="{Cash}" />
+                    <viz.data:MeasureDefinition name="Card" value="{Card}" />
+                    <viz.data:MeasureDefinition name="Fleet Sale" value="{Fleet}" />
+                    <viz.data:MeasureDefinition name="Amount" value="{Profit}" />
+                  </viz.data:measures>
+                </viz.data:FlattenedDataset>
+              </viz:dataset>
+              <viz:feeds>
+                <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Cash,Card,Fleet Sale" />
+                <viz.feeds:FeedItem uid="valueAxis2" type="Measure" values="Amount" />
+                <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Quarter" />
+              </viz:feeds>
+            </viz:VizFrame>
+          </m:VBox>
+        </m:Panel>
+
+        <!-- Payment Mode Chart -->
+        <!-- Donut Chart for Payment Modes -->
+<m:Panel headerText="Payment Modes Distribution" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+  <m:VBox class="sapUiSmallMargin contentCentered">
+    <viz:VizFrame
+      id="donutPaymentModesChart"
+      height="300px"
+      width="80%"
+      vizType="donut"
+      uiConfig="{applicationSet:'fiori'}"
+      vizProperties='{
+        "title": {
+          "text": "Most Preferred Payment Methods",
+          "visible": true
+        },
+        "legend": {
+          "visible": true
+        },
+        "plotArea": {
+          "dataLabel": {
+            "visible": true,
+            "formatString": ["#,##0.00%"]
+          }
+        }
+      }'>
+      <viz:dataset>
+        <viz.data:FlattenedDataset data="{localModel>/paymentModes}">
+          <viz.data:dimensions>
+            <viz.data:DimensionDefinition name="Mode" value="{mode}" />
+          </viz.data:dimensions>
+          <viz.data:measures>
+            <viz.data:MeasureDefinition name="Percentage" value="{value}" />
+          </viz.data:measures>
+        </viz.data:FlattenedDataset>
+      </viz:dataset>
+      <viz:feeds>
+        <viz.feeds:FeedItem uid="size" type="Measure" values="Percentage" />
+        <viz.feeds:FeedItem uid="color" type="Dimension" values="Mode" />
+      </viz:feeds>
+    </viz:VizFrame>
+  </m:VBox>
+</m:Panel>
+
+
+        <!-- Order Status -->
+        <m:Panel headerText="Order Status Summary" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+          <m:VBox class="sapUiSmallMargin contentCentered">
+            <m:HBox width="100%" justifyContent="SpaceBetween">
+              <m:VBox width="30%">
+                <m:Label text="Delivered Orders" />
+                <m:ObjectNumber number="{localModel>/deliveredOrders}" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Pending Orders" />
+                <m:ObjectNumber number="{localModel>/pendingOrders}" state="Warning" />
+              </m:VBox>
+              <m:VBox width="30%">
+                <m:Label text="Cancelled Orders" />
+                <m:ObjectNumber number="{localModel>/cancelledOrders}" state="Error" />
+              </m:VBox>
+            </m:HBox>
+          </m:VBox>
+        </m:Panel>
+
+      </m:VBox>
+    </m:content>
+  </m:Page>
 </mvc:View>
+

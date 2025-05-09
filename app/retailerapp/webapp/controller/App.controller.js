@@ -3,7 +3,7 @@ sap.ui.define([
 ], (BaseController) => {
   "use strict";
 
-  return BaseController.extend("com.ingenx.retailerapp.controller.App", {
+  return BaseController.extend("com.ingenx.qms.retailerapp.controller.App", {
       onInit() {
       }
   });

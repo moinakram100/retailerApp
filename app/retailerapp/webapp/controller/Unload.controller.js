@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, Fragment) {
     "use strict";
 
-    return Controller.extend("com.ingenx.retailerapp.controller.Unload", {
+    return Controller.extend("com.ingenx.qms.retailerapp.controller.Unload", {
         onInit() {
             var oDummyData = [
                 {
@@ -27,7 +27,7 @@ sap.ui.define([
             var oView = this.getView();
             if (!this.byId('partQuantity')) {
                 Fragment.load({
-                    name: "com.ingenx.retailerapp.fragments.confirmPartialQuantity",
+                    name: "com.ingenx.qms.retailerapp.fragments.confirmPartialQuantity",
                     controller: this,
                     id: oView.getId()
                 }).then(function (oDialog) {

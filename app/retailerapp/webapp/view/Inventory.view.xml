@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.ingenx.retailerapp.controller.Inventory"
+<mvc:View controllerName="com.ingenx.qms.retailerapp.controller.Inventory"
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns:tnt="sap.tnt" 
     displayBlock="true" 

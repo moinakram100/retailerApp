@@ -1,132 +1,125 @@
-<mvc:View
-  controllerName="com.ingenx.retailerapp.controller.MyOrders"
-  xmlns="sap.m"
-  xmlns:tnt="sap.tnt"
-  xmlns:mvc="sap.ui.core.mvc">
+<mvc:View controllerName="com.ingenx.qms.retailerapp.controller.MyOrders"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
 
-  <Page showHeader="false">
-   <tnt:ToolHeader
-            id="myOrder_ToolHeader"
-            class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
+    xmlns="sap.m">
+
+    <Page id="orderPage" showHeader="false">
+        <content>
+            <VBox width="100%" class=" paddingleft paddingtop">
+
+                <!-- Title Panel (updated to match payments view) -->
+                  <tnt:ToolHeader
+            id="paymentPage_ToolHeader"
+           class=" sapUiTinyMarginEnd sapUiTinyMarginTop "
+            width="99%"
+            
+
         >
          <HBox
                 justifyContent="Center"
                 width="100%"
-                id="myOrderPageHeaderHBox"
+                id="paymentPageHeaderHBox"
             >
             <Title
-                text="My Orders"
+                text="CNG purchase order"
                 wrapping="true"
-                id="myOrder_Title"
+                id="paymentPage_Title"
                 level="H3"
                 class="headerTitle"
             />
-             
             </HBox>
         </tnt:ToolHeader>
 
-    <content>
-     
+                <!-- Order Form Panel (3D Box) -->
+                <Panel id="orderFormPanel"
+                       headerText="Create CNG Order"
+                       width="99%"
+                       class="visitorPanel3DD sapUiSmallMarginTop paddingtop"
+                       visible="false">
+                    <VBox width="90%">
+                        <HBox width="100%" justifyContent="SpaceBetween" wrap="Wrap">
 
-      <!-- === Filters / Search === -->
-      <HBox class="sapUiSmallMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd navArea" justifyContent="SpaceBetween" >
-        <SearchField width="400px" placeholder="Search by Order No..." liveChange="onSearchOrder"/>
-          <HBox>
-        <Button
-          icon="sap-icon://filter"
-          text="Filters"
-          press="onOpenFilterPopover"/>
-          <Button
-          icon="sap-icon://add"
-          class="sapUiSmallMarginBegin"
-          text="New Order"
-          type="Emphasized"
-          press="onCreateOrder"/>
-          </HBox>
-      </HBox>
+                            <VBox width="23%" class="marginfront">
+                                <Label text="Gas Supplier" />
+                                <Input id="supplierName" value="{localModel>/supplierName}" placeholder="e.g. Indraprastha Gas" width="100%" />
+                            </VBox>
 
-      <!-- === Orders Table === -->
-      <Table
-        id="ordersTable"
-        inset="false"
-        width="99%"
-        class="formArea sapUiTinyMarginBegin"
-        growing="true"
-        growingThreshold="20"
-        items="{/orders}"
-        mode="SingleSelectMaster"
-        selectionChange="onOrderSelect">
+                            <VBox width="23%">
+                                <Label text="Delivery Date" />
+                                <DatePicker id="deliveryDate" value="{localModel>/deliveryDate}" placeholder="Select Date" width="100%" />
+                            </VBox>
 
-        <!-- Columns -->
-        <columns>
-          <Column><Text text="Order No" /></Column>
-          <Column demandPopin="true"><Text text="Date" /></Column>
-          <Column demandPopin="true"><Text text="Status" /></Column>
-          <Column demandPopin="true"><Text text="Quantity (KG)" /></Column>
-          <Column minScreenWidth="Tablet" demandPopin="false"><Text text="Customer" /></Column>
-          <Column><Text text="Actions" /></Column>
-        </columns>
+                            <VBox width="23%">
+                                <Label text="Quantity (Kg)" />
+                                <Input id="quantity" value="{localModel>/quantity}" type="Number" placeholder="Enter Quantity" width="100%" />
+                            </VBox>
 
-        <!-- Items Binding -->
-        <items>
-          <ColumnListItem type="Active">
-            <cells>
-              <Text text="{orderNo}" />
-              <Text text="{orderDate}" />
-              <ObjectStatus
-                text="{status}"
-                state="{= ${status} === 'Delivered' ? 'Success' : 'Warning'}" />
-              <Text text="{quantity}" />
-              <Text text="{customerName}" />
-              <HBox width="100%">
-                <Button
-                  icon="sap-icon://show"
-                  type="Transparent"
-                  tooltip="View Details"
-                  press="onViewDetail"/>
-                
-                <Button
-                  icon="sap-icon://decline"
-                  type="Transparent"
-                  tooltip="Cancel"
-                  visible="{= ${status} === 'Pending'}"
-                  press="onCancel"/>
-                  
-              </HBox>
-            </cells>
-          </ColumnListItem>
-        </items>
+                            <VBox width="23%">
+                                <Label text="Rate per Kg (₹)" />
+                                <Input id="rate" value="{localModel>/rate}" type="Number" placeholder="Enter Rate" width="100%" />
+                            </VBox>
 
-      </Table>
-    </content>
-  </Page>
-  <Popover
-  id="filterPopover"
-  title="Filter Orders"
-  placement="Bottom"
-  class="sapUiContentPadding"
-  xmlns="sap.m"
-  xmlns:core="sap.ui.core">
+                            <VBox width="23%">
+                                <Label text="Status" />
+                                <HBox width="100%" alignItems="Center">
+                                    <Input id="status" value="{localModel>/status}" placeholder="Ordered / Received" width="80%" />
+                                    <Button id="submitOrder" text="Submit" press="onSaveOrder" type="Emphasized"/>
+                                </HBox>
+                            </VBox>
 
-  <content>
-    <VBox>
-      <Label text="Status" />
-      <Select id="statusSelect" change="_onStatusFilter" width="100%">
-        <core:Item key="All" text="All" />
-        <core:Item key="Pending" text="Pending" />
-        <core:Item key="Delivered" text="Delivered" />
-        <core:Item key="Cancelled" text="Cancelled" />
-      </Select>
+                        </HBox>
+                    </VBox>
+                </Panel>
 
-      <Label text="Date From" />
-      <DatePicker id="dateFrom" change=".onDateFilter" />
+                <!-- Orders Table Panel (3D Box) -->
+                <Panel id="ordersPanel" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+                    <VBox width="100%" class="paddingleft">
+                        <Toolbar>
+                            <Title text="CNG Order Records" />
+                            <ToolbarSpacer/>
+                            <Button text="New Order" press="onShowOrderForm" type="Emphasized" />
+                            <Button text="Refresh" press="onRefreshOrders" type="Emphasized" />
+                        </Toolbar>
 
-      <Label text="Date To" />
-      <DatePicker id="dateTo" change=".onDateFilter" />
+                        <Table id="ordersTable" items="{localModel>/Orders}" width="100%">
+  <columns>
+    <Column><Text text="Order ID"/></Column>
+    <Column><Text text="Station ID"/></Column>
+    <Column><Text text="Material"/></Column>
+    <!-- <Column><Text text="Safety Stock (KG)"/></Column> -->
+    <!-- <Column><Text text="Reorder Level (KG)"/></Column> -->
+    <!-- <Column><Text text="Gas Supplier"/></Column> -->
+    <Column><Text text="Delivery Date"/></Column>
+    <Column><Text text="Quantity (KG)"/></Column>
+    <Column><Text text="Rate (₹/KG)"/></Column>
+    <Column><Text text="Total Price (₹)"/></Column>
+    <Column><Text text="Status"/></Column>
+  </columns>
+  <items>
+    <ColumnListItem>
+      <cells>
+        <Text text="{localModel>ID}"/>
+        <Text text="{localModel>StationID}"/>
+        <Text text="{localModel>Material}"/>
+        <!-- <Text text="{localModel>SafetyStock}"/>
+        <Text text="{localModel>ReorderLevel}"/> -->
+        <!-- <Text text="{localModel>supplierName}"/> -->
+        <Text text="{localModel>deliveryDate}"/>
+        <Text text="{localModel>quantity}"/>
+        <Text text="{localModel>rate}"/>
+        <Text text="{= ${localModel>quantity} * ${localModel>rate} }"/>
+        <Text text="{localModel>status}"/>
+      </cells>
+    </ColumnListItem>
+  </items>
+</Table>
 
-      <Button text="Clear Filters" press="._onClearFilters" />
-    </VBox>
-  </content>
-</Popover>
+                    </VBox>
+                </Panel>
 
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>
+

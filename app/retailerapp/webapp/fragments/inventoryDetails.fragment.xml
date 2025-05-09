@@ -1,0 +1,91 @@
+
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:core="sap.ui.core">
+
+  <Dialog
+    titleAlignment="Center"
+    type="Standard"
+    id="detailsDialog"
+    title="Tank Details"
+    contentWidth="350px"
+    contentHeight="auto"
+    class="details_tab"
+    afterClose="onDialogClose">
+
+   <!-- Tank Details tabfilter Code -->
+    <IconTabBar
+		id="idIconTabBar"
+		select=".onFilterSelect"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter id="tankDialogDetailsTab"
+				icon="sap-icon://detail-more"
+				iconColor="Positive"
+				text="Details"
+				key="Ok">
+           <VBox id="tankDialogDetailsTabVBox" class="tank_info_box sapUiResponsiveMargin">
+  
+             <FlexBox id="tankDialogDetailsTabFlexBox" class="fbox">
+             <HBox class="tankNo_box">
+               <Text id="tankDialogDetailsTabTankNo" text="Tank No"  width="100%"/>
+               <Text text=":" id="tank_colon"/>  
+             </HBox>
+               <VBox id="f1" width="50%" class="ibox">
+               <Text id="tankDialogDetailsTabTankNoText" class="details_text" text="{selectedTank>/seqnr}"/>
+               </VBox>
+             </FlexBox>
+
+             <FlexBox id="tankDialogDetailsTabFlexBox1"  class="fbox">
+             <HBox class="tankNo_box">
+               <Text id="tankDialogDetailsTabStorage" text="Location"  width="100%"/>
+               <Text text=":" id="storage_colon"/>
+               </HBox>
+               <VBox id="f2" class="ibox" width="50%">
+               <Text id="tankDialogDetailsTabStorageText" class="details_text" text="{selectedTank>/location}"/>
+               </VBox>
+             </FlexBox>
+
+             <FlexBox id="tankDialogDetailsTabFlexBox2"  class="fbox">
+             <HBox class="tankNo_box">
+               <Text id="tankDialogDetailsTabPlant" text="Product"  width="100%"/>
+               <Text text=":" id="plant_colon"/>
+               </HBox>
+               <VBox id="f3" class="ibox" width="50%">
+               <Text id="tankDialogDetailsTabPlantText" class="details_text" text="{selectedTank>/product}" />
+               </VBox>
+             </FlexBox>
+
+             <FlexBox id="tankDialogDetails" class="fbox">
+             <HBox class="tankNo_box">
+               <Text id="tankDialogDetailsTabQty" text="Quantity"  width="100%"/>
+               <Text text=":" id="qty_colon"/>
+               </HBox>
+               <VBox id="f4" class="ibox" width="50%">
+               <Text text="{parts: [{ path: 'selectedTank>/tankHeight' },{ path: 'selectedTank>/capacity' }],formatter: '.getQuantityText'}" />
+
+               </VBox>
+             </FlexBox>
+            
+           
+             <FlexBox id="tankDialogDetailsTabFlexBox5" class="fbox">
+             <HBox class="tankNo_box">
+               <Text id="tankDialogDetailsTabMaxCap" text="Capacity" />
+               <Text text=":" id="maxCap_colon"/>
+               </HBox>
+               <VBox id="f6" class="ibox" width="50%">
+                <Text id="tankDialogDetailsTabMaxCapText" 
+                    class="details_text" 
+                    text="{selectedTank>/capacity}" />    
+                </VBox>
+            </FlexBox>
+           
+           </VBox>
+      </IconTabFilter>    
+
+		</items>
+	</IconTabBar>
+    <Button id="tankDialogExitButton" text="Close" type="Reject" class="details_close_btn" press=".onDialogClose"/>
+  </Dialog>
+</core:FragmentDefinition>

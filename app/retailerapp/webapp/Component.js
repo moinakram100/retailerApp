@@ -1,10 +1,10 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "com/ingenx/retailerapp/model/models"
+    "com/ingenx/qms/retailerapp/model/models"
 ], (UIComponent, models) => {
     "use strict";
 
-    return UIComponent.extend("com.ingenx.retailerapp.Component", {
+    return UIComponent.extend("com.ingenx.qms.retailerapp.Component", {
         metadata: {
             manifest: "json",
             interfaces: [

@@ -1,7 +1,7 @@
-<mvc:View controllerName="com.ingenx.retailerapp.controller.Inventory"
+<mvc:View controllerName="com.ingenx.qms.retailerapp.controller.SalesOrder"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:layout="sap.ui.layout.form" 
-    displayBlock="true" 
+    xmlns:layout="sap.ui.layout.form"
+    displayBlock="true"
     xmlns:tnt="sap.tnt"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
@@ -14,7 +14,7 @@
         >
          <HBox justifyContent="Center" width="100%" id="orderPageHeaderHBox">
             <Title
-                text="Purchase Request"
+                text="Purchase Requisition"
                 wrapping="true"
                 id="salesOrder_Title"
                 level="H3"
@@ -23,20 +23,20 @@
             </HBox>
         </tnt:ToolHeader>
         <content>
-       <VBox class="" width="99%">
+       <!-- <VBox class="" width="99%">
                         <form:SimpleForm
                             id="create_orgDetailsForm"
                             class="sapUiTinyMargin formArea"
                             editable="true" >
-              
+             
                             <form:content>
                                 <core:Title id="create_IDGenTitle1" />
                                 <VBox id="orgDetailsContainer" class="dynamicField"/>
                                 <Label
                                     id="create_vendorLabel"
-                                    text="PR Number" 
+                                    text="PR Number"
                                     labelFor="create_VendorId"
-                                    
+                                   
                                 />
                                 <HBox id="createPurcHBox2">
                                     <Input
@@ -46,7 +46,7 @@
                                         editable="false"
                                     />
                                 </HBox>
-                              
+                             
                                 <Label
                                     id="create_purchaseOrgLabel"
                                     text="Delivery Location"
@@ -58,7 +58,7 @@
                                         value="{vendorDataModel>/PurchasingOrganization}"
                                     />
                                 </HBox>
-
+ 
                                   <Label
                                     id="create_startDateLabel"
                                     text="Quantity"
@@ -68,7 +68,7 @@
                                         width="300px"
                                         value="{purchase>/PurGroup}"
                                     />
-                              
+                             
                                 <Label
                                     id="create_endDateLabel"
                                     text="Unit of Measure"                                    
@@ -77,26 +77,26 @@
                                 <core:Item key="kg" text="kg" />
                                 <core:Item key="Nm3" text="Nm³" />
                               </Select>
-
+ 
                                 <Label
                                     id="create_companyCodeLabel"
                                     text="Request Date"
-                                    
+                                   
                                 />
                                 <HBox id="createPurcHBox3">
                             <DatePicker id="requestDate" value="{pr>/requestDate}" width="300px"/>
                                 </HBox>
-                              
-
+                             
+ 
                                 <core:Title id="create_IDGenTitle2" />
-
+ 
                                 <VBox id="orgDetailsContainer2" class="dynamicFieldRight"/>
                                   <Label text="Gas Type"/>
                                 <Select id="gasType" selectedKey="{pr>/gasType}" width="300px" forceSelection="false">
                                   <core:Item key="CNG" text="CNG" />
                                   <core:Item key="LPG" text="LPG" />
                                 </Select>
-
+ 
                                 <Label
                                     id="create_purchaseGroupLabel"
                                     text="Requested By"
@@ -108,30 +108,128 @@
                                         value="{purchase>/PurGroup}"
                                     />
                                 </HBox>
-
+ 
                                  <Label text="Priority" />
                                 <Select id="priority" selectedKey="{pr>/priority}" width="300px" forceSelection="false">
                                   <core:Item key="Normal" text="Regular" />
                                   <core:Item key="Urgent" text="Urgent" />
                                   <core:Item key="Emergency" text="Emergency" />
                                 </Select>
-
+ 
                                <Label text="Required By Date" />
                                <DatePicker id="requiredBy" value="{pr>/requiredBy}" width="300px"/>
-
+ 
                                   <Label text="Remarks" />
                                <TextArea id="remarks" value="{pr>/remarks}" width="300px" />
-
+ 
            
-
+ 
                             </form:content>
                                
                         </form:SimpleForm>
                         <HBox justifyContent="End">
                      <Button text="Submit" type="Emphasized" press="onSubmitPR"/>
                         </HBox>
+  </VBox> -->
+    <VBox class="sapUiTinyMarginEnd" width="99%">
+ 
+    <mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:form="sap.ui.layout.form"
+  controllerName="your.namespace.controller.CNGPurchaseRequisition">
+ 
+  <form:SimpleForm
+    id="CNGPRForm"
+    class="simpleForm sapUiTinyMargin "
+    layout="ResponsiveGridLayout"
+    columnsXL="2"
+    columnsL="2"
+    columnsM="2"
+    labelSpanXL="4"
+    labelSpanL="4"
+    labelSpanM="4"
+    adjustLabelSpan="false"
+    emptySpanXL="0"
+    emptySpanL="0"
+    emptySpanM="0">
+ 
+    <form:content>
+      <core:Title text="Station Info" />
+ 
+      <Label text="Station ID" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/StationID}" width="70%" editable="false" />
+ 
+        <Label text="Material" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/Material}" width="70%" editable="false" />
+ 
+      <Label text="Current Stock" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/CurrentStock}" width="70%" editable="false" />
+ 
+ 
+      <Label text="Avg Sales Rate (KG/hr)" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/AvgSalesRate}" width="70%" editable="false" />
+ 
+   
+ 
+      <Label text="Reorder Level" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/ReorderLevel}" width="70%" editable="false" />
+         <Label text="Unit of Measure" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/UoM}" width="70%" editable="false" />
+ 
+      <core:Title text="Purchase Requisition Info" />
+ 
+        <Label text="Supplier Plant" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/Plant}" width="70%" showValueHelp="true" valueHelpRequest="onPlantValueHelp" />
+ 
+   
+ 
+      <Label text="Description" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/Description}" width="70%" editable="false" />
+     
+      <Label text="Safety Stock" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/SafetyStock}" width="70%" editable="false" />
+ 
+         <Label text="Lead Time (hrs)" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/LeadTime}" width="70%" editable="false" />
+ 
+      <Label text="Requested Quantity" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/Quantity}" width="70%" editable="true" />
+ 
+   
+ 
+      <Label text="Delivery Date" design="Bold" class="sapUiTinyMarginTop" />
+      <DatePicker value="{pr>/DeliveryDate}" width="70%" displayFormat="yyyy-MM-dd" />
+ 
+   
+<!--
+      <Label text="Purchasing Group" design="Bold" class="sapUiTinyMarginTop" />
+      <Input value="{pr>/PurchasingGroup}" width="70%" showValueHelp="true" valueHelpRequest="onPurchasingGroupValueHelp" /> -->
+    </form:content>
+  </form:SimpleForm>
+ 
+  <HBox class="_hboxBtn" alignContent="Center" justifyContent="End">
+    <Button
+      text="Submit"
+      class="sapUiSmallMargin"
+      press="onSubmitPR"
+      width="120px"
+      type="Emphasized"
+    />
+    <Button
+      icon="sap-icon://print"
+      text="Print"
+      class="sapUiSmallMargin"
+      press="onPrintPR"
+      width="120px"
+      type="Emphasized"
+    />
+  </HBox>
+</mvc:View>
+ 
   </VBox>
-
+ 
         </content>
     </Page>
 </mvc:View>

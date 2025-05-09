@@ -1,7 +1,7 @@
 {
   "_version": "1.65.0",
   "sap.app": {
-    "id": "com.ingenx.retailerapp",
+    "id": "com.ingenx.qms.retailerapp",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -59,7 +59,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.ingenx.retailerapp.i18n.i18n"
+          "bundleName": "com.ingenx.qms.retailerapp.i18n.i18n"
         }
       },
       "": {
@@ -87,9 +87,9 @@
         "transition": "slide",
         "type": "View",
         "viewType": "XML",
-        "path": "com.ingenx.retailerapp.view",
+        "path": "com.ingenx.qms.retailerapp.view",
         "async": true,
-        "viewPath": "com.ingenx.retailerapp.view"
+        "viewPath": "com.ingenx.qms.retailerapp.view"
       },
       "routes": [
         {
@@ -196,7 +196,7 @@
       }
     },
     "rootView": {
-      "viewName": "com.ingenx.retailerapp.view.App",
+      "viewName": "com.ingenx.qms.retailerapp.view.App",
       "type": "XML",
       "id": "App",
       "async": true

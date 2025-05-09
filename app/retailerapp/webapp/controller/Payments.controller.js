@@ -6,7 +6,7 @@ sap.ui.define([
 ], (Controller,JSONModel,Filter,FilterOperator) => {
     "use strict";
 
-    return Controller.extend("com.ingenx.retailerapp.controller.Payments", {
+    return Controller.extend("com.ingenx.qms.retailerapp.controller.Payments", {
         onInit: function () {
           var oData = {
             payments: [

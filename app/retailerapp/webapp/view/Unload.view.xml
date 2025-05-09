@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.ingenx.retailerapp.controller.Unload"
+<mvc:View controllerName="com.ingenx.qms.retailerapp.controller.Unload"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns:tnt="sap.tnt"

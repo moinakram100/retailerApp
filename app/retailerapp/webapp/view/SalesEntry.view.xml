@@ -1,116 +1,105 @@
-<mvc:View controllerName="com.ingenx.retailerapp.controller.SalesEntry"
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns:tnt="sap.tnt" 
-    displayBlock="true" 
-    xmlns:form="sap.ui.layout.form"
-    xmlns:l="sap.ui.layout"
-    xmlns:core="sap.ui.core"
-    xmlns="sap.m">
-    <Page id="salesInnventoryPage" showHeader="false">
-        <content>
-    <tnt:ToolHeader
-        id="salesEntryPageToolbar"
-        class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiTinyMarginBegin"
-    >
-       <HBox
+<mvc:View
+  controllerName="com.ingenx.qms.retailerapp.controller.SalesEntry"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:tnt="sap.tnt"
+  xmlns:core="sap.ui.core">
+
+  <Page showHeader="false">
+    <content>
+      <VBox width="100%" class=" paddingleft paddingtop">
+
+        <!-- Title Panel -->
+  <tnt:ToolHeader
+            id="paymentPage_ToolHeader"
+            class=" sapUiTinyMarginEnd sapUiTinyMarginTop "
+            width="99%"        >
+         <HBox
                 justifyContent="Center"
                 width="100%"
-                id="salesEntryPageHeaderHBox"
+                id="paymentPageHeaderHBox"
             >
-                <Title
-                    text="Sales Entry"
-                    wrapping="true"
-                    id="salesEntryPageHeaderTitle"
-                    textAlign="Center"
-                    class="headerTitle"
-                />
+            <Title
+                text="Sales Entry"
+                wrapping="true"
+                id="paymentPage_Title"
+                level="H3"
+                class="headerTitle"
+            />
             </HBox>
-    </tnt:ToolHeader>
-             <VBox class="" width="99%">
-                        <form:SimpleForm
-                            id="salesEntryForm"
-                            class="sapUiTinyMargin formArea"
-                            editable="true" >
-              
-                            <form:content>
-                                <core:Title id="salesEntryTitle1" />
-                                <VBox id="salesEntryContainer" class="dynamicField"/>
-                                <Label
-                                    id="sales_customerNameLabel"
-                                    text="Customer Name" 
-                                    labelFor="create_VendorId"
-                                    
-                                />
-                                    <Input
-                                        id="sales_customerNameInput"
-                                        width="300px"
-                                        value="{purchase>/Vendor}"
-                                    />
+        </tnt:ToolHeader>
 
-                                  <Label
-                                    id="sales_itemLabel"
-                                    text="Item"
-                                />
-                                <Input
-                                        id="sales_itemText"
-                                        width="300px"
-                                        value="{purchase>/PurGroup}"
-                                    />
-                              
-                                <Label
-                                    id="sales_qtyLabel"
-                                    text="Quantity"                                    
-                                />
-                                 <Input
-                                        id="sales_qtyText"
-                                        width="300px"
-                                        value="{purchase>/PurGroup}"
-                                />
-                                 <Label
-                                    id="sales_Date"
-                                    text="Date"
-                                />
-                                   <DatePicker id="saleDate" required="true" width="300px"/>
-                               
+        <!-- Record New Sale Panel -->
+        <Panel headerText="Record New Sale" class="visitorPanel3DD sapUiSmallMarginTop paddingtop" width="99%">
+          <VBox class="sapUiSmallMargin">
+            <VBox class="sapUiSmallMarginLeft sapUiSmallMarginRight">
+              <HBox width="100%" wrap="Wrap" justifyContent="SpaceBetween">
 
-                              
-                              
+                <VBox width="23%" class="sapUiSmallMarginBottom">
+                  <Label text="Sale Date:" />
+                  <DatePicker value="{localModel>/saleDate}" width="100%" />
+                </VBox>
 
-                                <core:Title id="sales_IDGenTitle2" />
+                <VBox width="23%" class="sapUiSmallMarginBottom">
+                  <Label text="Quantity Sold (Kg):" />
+                  <Input value="{localModel>/quantitySold}" type="Number" placeholder="Enter Quantity" width="100%" />
+                </VBox>
 
-                                <VBox id="salesEntryContainer2" class="dynamicFieldRight"/>
-                                  <Label
-                                    id="sales_totalAmount"
-                                    text="Total Amount"
-                                />
-                                <Input
-                                        id="sales_amountext"
-                                        width="300px"
-                                        value="{purchase>/PurGroup}"
-                                />
-                                  <Label text="Payment Method"/>
-                                <Select id="sales_paymentMethod"  width="300px" forceSelection="false">
-                                  <core:Item key="Cash" text="Cash"/>
-                                        <core:Item key="Card" text="Card"/>
-                                        <core:Item key="UPI" text="UPI"/>
-                                </Select>
+                <VBox width="23%" class="sapUiSmallMarginBottom">
+                  <Label text="Rate per Kg (₹):" />
+                  <Input value="{localModel>/saleRate}" type="Number" placeholder="Enter Rate" width="100%" />
+                </VBox>
 
-                              
+                <VBox width="23%" class="sapUiSmallMarginBottom">
+                  <Label text="Payment Mode:" />
+                  <Select selectedKey="{localModel>/paymentMode}" width="100%">
+                    <items>
+                      <core:Item key="Cash" text="Cash" />
+                      <core:Item key="Card" text="Card" />
+                      <core:Item key="Fleet" text="Fleet" />
+                    </items>
+                  </Select>
+                </VBox>
 
-                                  <Label text="Remarks" />
-                               <TextArea id="sales_remarks" value="{pr>/remarks}" width="300px" />
+              </HBox>
 
-           
+              <Button text="Save Sale" press="onSaveSale" type="Emphasized" width="200px" class="sapUiSmallMarginTop" />
+            </VBox>
+          </VBox>
+        </Panel>
 
-                            </form:content>
-                               
-                        </form:SimpleForm>
-                        <HBox justifyContent="End">
-                     <Button text="Submit" type="Emphasized" press="onSubmitPR"/>
-                        </HBox>
-  </VBox>
-                  
-           
-        </content>
-    </Page>
+        <!-- Sales History Table Panel -->
+        <Panel headerText="Sales History" class="visitorPanel3DD sapUiSmallMarginTop" width="99%">
+          <VBox width="100%" class="paddingleft">
+            <Table id="salesTable" items="{localModel>/Sales}" width="100%">
+              <columns>
+                <Column><Text text="Sale ID" /></Column>
+                <Column><Text text="Date" /></Column>
+                <Column><Text text="Quantity (Kg)" /></Column>
+                <Column><Text text="Rate (₹/Kg)" /></Column>
+                <Column><Text text="Total (₹)" /></Column>
+                <Column><Text text="Payment Mode" /></Column>
+                <Column><Text text="Customer" /></Column>
+              </columns>
+              <items>
+                <ColumnListItem>
+                  <cells>
+                    <Text text="{localModel>saleID}" />
+                    <Text text="{localModel>saleDate}" />
+                    <Text text="{localModel>quantitySold}" />
+                    <Text text="{localModel>saleRate}" />
+                    <Text text="{= ${localModel>quantitySold} * ${localModel>saleRate} }" />
+                    <Text text="{localModel>paymentMode}" />
+                    <Text text="{localModel>customerName}" />
+                  </cells>
+                </ColumnListItem>
+              </items>
+            </Table>
+          </VBox>
+        </Panel>
+
+      </VBox>
+    </content>
+  </Page>
 </mvc:View>
+

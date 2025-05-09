@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.ingenx.retailerapp.controller.Dashboard"
+    controllerName="com.ingenx.qms.retailerapp.controller.Dashboard"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:tnt="sap.tnt"
     xmlns:f="sap.f"
@@ -12,7 +12,7 @@
     xmlns:viz.data="sap.viz.ui5.data"
     xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 >
-  <Page id="page1" title="{i18n>title}" showHeader="false">
+   <Page id="page1" title="{i18n>title}" showHeader="false">
   <tnt:ToolHeader
             id="eZTableMap_ToolHeader"
             class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop"
@@ -38,88 +38,27 @@
         <!-- Your Inventory Block Here -->
         <l:BlockLayout id="dashLayout" background="Dashboard" visible="true">
             <l:BlockLayoutRow id="dashboardCardRow"> 
-                <l:BlockLayoutCell id="dashboardCardCell" width="60%">
-                     <Toolbar id="dashtb">
-                        <Title id="dashCellTitle" level="H6" text="Inventory"/>
-                    </Toolbar>
-                    <Text id="inventoryLabel" text="Location : Andheri East" class="sapUiTinyMargin"/>
-                        <HBox id="dashHbox1" class="dashBoard">
-                            <Text id="inventoryText" text="CNG" class="sapUiTinyMargin graphText"/>
-                            <ProgressIndicator
-                                id="dashboard_progressIn"
-                                class="sapUiTinyMargin progressBar"
-                                percentValue="100"
-                                showValue="true"
-                                width="100%"
-                                state="Information">
-                                <layoutData>
-                                <FlexItemData id="dashboard_progressInFlex" growFactor="1" />
-                                </layoutData>
-                            </ProgressIndicator>
-                            <Text id="dashboard_progressInText" text="70%" class="sapUiTinyMargin graphText"/>
-                        </HBox>
-
-                    <Text text="Location : Sakinaka" class="sapUiTinyMargin"/>
-                        <HBox id="dashHbox3" class="hbxo">
-                            <Text text="CNG" class="sapUiTinyMargin graphText"/>
-                            <ProgressIndicator
-                            id="dashboard_progressIn2"
-                                class="sapUiTinyMargin progressBar"
-                                percentValue="100"
-                                showValue="true"
-                                width="100%"
-                                state="Information">
-                                <layoutData>
-                                <FlexItemData growFactor="1" />
-                                </layoutData>
-                            </ProgressIndicator>
-                            <Text text="55%" class="sapUiTinyMargin graphText"/>
-                        </HBox>
-                      
-                        <HBox
-                            justifyContent="End"
-                            width="100%">
-                            <Link class="viewAllLink sapUiTinyMargin" text="View All" press="onPressViewAllLink"/>
-                        </HBox>
-
-                </l:BlockLayoutCell>
+               
                 <l:BlockLayoutCell width="50%">
                     <Toolbar id="dashtb2">
                         <Title id="dashCellTitle2" level="H6" text="Sales History (7 Days)"/>
                     </Toolbar>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMarginTop">
-                        <Text text="20/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$568,814.00" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                        <Text text="19/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$768,900.84" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                        <Text text="18/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$548,999.94" textAlign="End" width="100px" class="sapUiTinyMarginEnd markText"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                        <Text text="17/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$968,467.12" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                        <Text text="16/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$875,005.18" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop">
-                        <Text text="15/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$468,857.20" textAlign="End" width="100px" class="sapUiTinyMarginEnd markText"/>
-                    </HBox>
-                    <HBox width="100%" justifyContent="SpaceBetween" class="sapUiTinyMarginTop"> 
-                        <Text text="14/03/2019" class="sapUiTinyMarginBegin" />
-                        <Text text="$655,699.20" textAlign="End" width="100px" class="sapUiTinyMarginEnd"/>
-                    </HBox>
-                        <HBox
-                            justifyContent="End"
-                            width="100%">
-                            <Link class="viewAllLink sapUiTinyMargin" text="Details" press="onPressSalesHistoryLink"/>
+                   <VBox id="salesList" class="sapUiSmallMargin">
+                        <!-- Header Row -->
+                        <HBox justifyContent="SpaceBetween" >
+                            <Text text="Date" />
+                            <Text text="Opening Stock" class="sapUiLargeMarginBegin"/>
+                            <Text text="Closing Stock" class="sapUiLargeMarginEnd" />
+                            <Text text="Amount" />
                         </HBox>
+
+                   <!-- Data Rows - will be added dynamically in controller -->
+                   </VBox>
+
+
+              <HBox justifyContent="End" width="100%">
+                <Link class="viewAllLink sapUiTinyMargin" text="Details" press="onPressSalesHistoryLink"/>
+              </HBox>
 
                 </l:BlockLayoutCell>
             </l:BlockLayoutRow>
@@ -188,7 +127,7 @@
 </HBox>
 
 <HBox>
-<VBox class="sapUiSmallMargin chartArea" width="70%">
+<VBox class="sapUiSmallMargin chartArea" width="68%">
         <viz:VizFrame
       id="idVizFrame"
       height="300px"
@@ -225,8 +164,8 @@
     </viz:VizFrame>
     </VBox>
 
-    <VBox  width="28%">  
-    <viz:VizFrame
+    <VBox  width="38%">  
+    <!-- <viz:VizFrame
   id="donutChart"
   class="sapUiSmallMarginTop chartArea"
   width="98%"
@@ -250,7 +189,76 @@
     <viz.feeds:FeedItem uid="size" type="Measure" values="Quantity"/>
     <viz.feeds:FeedItem uid="color" type="Dimension" values="Category"/>
   </viz:feeds>
-</viz:VizFrame>
+</viz:VizFrame> -->
+
+ <!-- <viz:VizFrame
+      id="idVizFrame1"
+      width="98%"
+      height="300px"
+      class="sapUiSmallMarginTop chartArea"
+      vizType="line">
+    </viz:VizFrame> -->
+  <viz:VizFrame
+    id="cngInventoryChart"
+    width="98%"
+    height="300px"
+    class="sapUiSmallMarginTop chartArea"
+    vizType="column"
+    uiConfig="{applicationSet:'fiori'}"
+    vizProperties="{
+      plotArea: {
+        dataLabel: {
+          visible: true
+        },
+        referenceLine: {
+          line: {
+            valueAxis: [
+              {
+                value: 100,
+                label: { text: 'Safety Stock: 100 KG' },
+                color: 'orange',
+                visible: true
+              },
+              {
+                value: 350,
+                label: { text: 'Reorder Point: 350 KG' },
+                color: 'red',
+                visible: true
+              }
+            ]
+          }
+        }
+      },
+      valueAxis: {
+        title: { visible: false }
+      },
+      categoryAxis: {
+        title: { visible: false }
+      },
+     title: {
+    visible: true,
+    text: 'CNG Inventory Status'
+  }
+    }">
+
+    <viz:dataset>
+      <viz.data:FlattenedDataset data="{cngModel>/cngInventory}">
+        <viz.data:dimensions>
+          <viz.data:DimensionDefinition name="Location" value="{cngModel>Location}" />
+        </viz.data:dimensions>
+        <viz.data:measures>
+          <viz.data:MeasureDefinition name="Stock" value="{cngModel>Stock}" />
+        </viz.data:measures>
+      </viz.data:FlattenedDataset>
+    </viz:dataset>
+
+    <viz:feeds>
+      <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stock" />
+      <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Location" />
+    </viz:feeds>
+
+  </viz:VizFrame>
+
 
     </VBox>
 </HBox>

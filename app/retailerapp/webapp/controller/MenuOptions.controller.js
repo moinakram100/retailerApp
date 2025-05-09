@@ -4,7 +4,7 @@ sap.ui.define([
 ], (Controller,JSONModel) => {
     "use strict";
 
-    return Controller.extend("com.ingenx.retailerapp.controller.MenuOptions", {
+    return Controller.extend("com.ingenx.qms.retailerapp.controller.MenuOptions", {
         onInit: function () {
     
         },  
